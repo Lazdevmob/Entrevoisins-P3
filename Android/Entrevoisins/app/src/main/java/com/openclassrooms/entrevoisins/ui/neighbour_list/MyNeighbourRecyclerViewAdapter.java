@@ -1,5 +1,6 @@
 package com.openclassrooms.entrevoisins.ui.neighbour_list;
 
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -45,30 +46,43 @@ public class MyNeighbourRecyclerViewAdapter extends RecyclerView.Adapter<MyNeigh
                 .apply(RequestOptions.circleCropTransform())
                 .into(holder.mNeighbourAvatar);
 
-        holder.mDeleteButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                EventBus.getDefault().post(new DeleteNeighbourEvent(neighbour));
+
+
+                holder.mDeleteButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        EventBus.getDefault().post(new DeleteNeighbourEvent(neighbour));
+                    }
+                });
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+                 @Override
+                 public void onClick(View v) {
+                     Intent NeighbourDetailActivityintent = new Intent(v.getContext(), NeighbourDetailActivity.class);
+                     NeighbourDetailActivityintent.putExtra("cardneighbour",neighbour);
+                     v.getContext().startActivity(NeighbourDetailActivityintent);
+                        }
+                     });
+
+
             }
-        });
-    }
 
-    @Override
-    public int getItemCount() {
-        return mNeighbours.size();
-    }
+            @Override
+            public int getItemCount() {
+                return mNeighbours.size();
+            }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
-        @BindView(R.id.item_list_avatar)
-        public ImageView mNeighbourAvatar;
-        @BindView(R.id.item_list_name)
-        public TextView mNeighbourName;
-        @BindView(R.id.item_list_delete_button)
-        public ImageButton mDeleteButton;
+            public class ViewHolder extends RecyclerView.ViewHolder {
+                @BindView(R.id.item_list_avatar)
+                public ImageView mNeighbourAvatar;
+                @BindView(R.id.item_list_name)
+                public TextView mNeighbourName;
+                @BindView(R.id.item_list_delete_button)
+                public ImageButton mDeleteButton;
 
-        public ViewHolder(View view) {
-            super(view);
-            ButterKnife.bind(this, view);
+                public ViewHolder(View view) {
+                    super(view);
+                    ButterKnife.bind(this, view);
+                }
+            }
         }
-    }
-}

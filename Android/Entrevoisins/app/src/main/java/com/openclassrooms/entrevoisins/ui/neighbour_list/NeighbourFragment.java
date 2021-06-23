@@ -63,6 +63,11 @@ public class NeighbourFragment extends Fragment {
         mRecyclerView.setAdapter(new MyNeighbourRecyclerViewAdapter(mNeighbours));
     }
 
+    //TODO
+    // changement init liste ds fragment dupliqué
+
+
+
     @Override
     public void onResume() {
         super.onResume();
