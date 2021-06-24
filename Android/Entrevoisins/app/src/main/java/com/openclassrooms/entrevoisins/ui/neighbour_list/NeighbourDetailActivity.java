@@ -3,6 +3,7 @@ package com.openclassrooms.entrevoisins.ui.neighbour_list;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.support.design.button.MaterialButton;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TextInputLayout;
@@ -65,9 +66,13 @@ public class NeighbourDetailActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         setSupportActionBar(findViewById(R.id.toolbarDet));
-        //Appbar myToolbar = (Appbar) findViewById(R.id.my_toolbar);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        findViewById(R.id.appbar2).bringToFront();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //getSupportActionBar().setDisplayShowHomeEnabled(true);
+        //getSupportActionBar().setHomeButtonEnabled(true);
+
+
+        //getSupportActionBar().setElevation(0);
 
         mApiService = DI.getNeighbourApiService();
         mNeighbour = (Neighbour) getIntent().getSerializableExtra("cardneighbour");
@@ -108,7 +113,6 @@ public class NeighbourDetailActivity extends AppCompatActivity {
                 if(isFavori) {
                     isFavori = false;
                     mAddFavourite.setImageResource(R.drawable.ic_star_border_white_24dp);
-                    //mAddFavourite.setRippleColor(int);
                     //Context context = getApplicationContext();
                     //Toast.makeText(context, "yes", Toast.LENGTH_SHORT).show();
                     mApiService.removeFavorite(mNeighbour);
@@ -118,7 +122,6 @@ public class NeighbourDetailActivity extends AppCompatActivity {
                     mAddFavourite.setImageResource(R.drawable.ic_star_white_24dp);
                     // Context context = getApplicationContext();
                     // Toast.makeText(context, "no", Toast.LENGTH_SHORT).show();
-                    // isFavori = false;
                     mApiService.addFavorite(mNeighbour);
                 }
 

@@ -6,4 +6,7 @@
     <color name="colorWhite">#FFFFFF</color>
     <color name="colorBlack">#000</color>
     <color name="colorGrey">#f2ffef</color>
+    <color name="text_shadow">#7F000000</color>
+
+
 </resources>

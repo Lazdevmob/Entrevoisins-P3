@@ -27,7 +27,7 @@ public class Neighbour implements Serializable {
     private String aboutMe;
 
     /** Is favori */
-    private boolean isfavorite;
+    private boolean isfavorites;
 
 
     /**
@@ -45,7 +45,7 @@ public class Neighbour implements Serializable {
         this.address = address;
         this.phoneNumber = phoneNumber;
         this.aboutMe = aboutMe;
-        this.isfavorite = false;
+        this.isfavorites = false;
     }
 
     public long getId() {
@@ -97,11 +97,11 @@ public class Neighbour implements Serializable {
     }
 
     public void setIsfavorite(boolean isfavorite) {
-        this.isfavorite = isfavorite;
+        this.isfavorites = isfavorite;
     }
 
     public boolean isIsfavorite() {
-        return isfavorite;
+        return isfavorites;
     }
 
     @Override
