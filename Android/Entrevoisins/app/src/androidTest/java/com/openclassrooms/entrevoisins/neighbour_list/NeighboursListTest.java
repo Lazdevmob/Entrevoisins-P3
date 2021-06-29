@@ -56,14 +56,8 @@ public class NeighboursListTest {
     @Test
     public void myNeighboursList_shouldNotBeEmpty() {
         // First scroll to the position that needs to be matched and click on it.
-        onView(withContentDescription(is(NeighbourFragment.ALL_NEIGHBOURS_PAGE)))
+        onView(ViewMatchers.withId(R.id.list_neighbours))
                 .check(matches(hasMinimumChildCount(1)));
-    }
-    @Test
-    public void myFavoriteListShouldBeEmpty() {
-        // First scroll to the position that needs to be matched and click on it.
-        onView(withContentDescription(is(FavoriteNeighbourFragment.FAVORITE_NEIGHBOURS_PAGE)))
-                .check(matches(hasMinimumChildCount(0)));
     }
 
     /**

@@ -37,7 +37,7 @@ public interface NeighbourApiService {
     void createNeighbour(Neighbour neighbour);
 
     /**
-     * Deletes a favorite neighbour
+     * Remove a favorite neighbour
      * @param neighbour
      * ldev
      */

@@ -46,10 +46,6 @@ public class ListNeighbourActivity extends AppCompatActivity {
 
     }
 
-   //public void navigateToNeighbourActivity() {
-   //    startActivity(NeighbourDetailActivity.navigate(this));
-   //}
-
 
     @OnClick(R.id.add_neighbour)
     void addNeighbour() {

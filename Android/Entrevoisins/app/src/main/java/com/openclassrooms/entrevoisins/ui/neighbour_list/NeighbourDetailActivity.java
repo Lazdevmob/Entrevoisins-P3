@@ -55,9 +55,6 @@ public class NeighbourDetailActivity extends AppCompatActivity {
         setSupportActionBar(findViewById(R.id.toolbarDet));
         findViewById(R.id.appbar2).bringToFront();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        //getSupportActionBar().setDisplayShowHomeEnabled(true);
-        //getSupportActionBar().setHomeButtonEnabled(true);
-        //getSupportActionBar().setElevation(0);
 
 
         mApiService = DI.getNeighbourApiService();
@@ -68,12 +65,9 @@ public class NeighbourDetailActivity extends AppCompatActivity {
          * */
         if (isFavori) {
             mFabFavourite.setImageResource(R.drawable.ic_star_yellow_24dp);
-            //Context context = getApplicationContext();
-            //Toast.makeText(context, "yes", Toast.LENGTH_SHORT).show();
-        } else {
+        }
+        else {
             mFabFavourite.setImageResource(R.drawable.ic_star_border_yellow_24dp);
-            // Context context = getApplicationContext();
-            // Toast.makeText(context, "no", Toast.LENGTH_SHORT).show();
         }
 
         mShowProfil.setText(cloneNeighbour.getName());
@@ -85,12 +79,6 @@ public class NeighbourDetailActivity extends AppCompatActivity {
         Glide.with(this).load(cloneNeighbour.getAvatarUrl()).into(mShowAvatar);
 
 
-        //public static Intent navigate(AppCompatActivity activity) {
-        //     Intent intent = new Intent(activity, NeighbourDetailActivity.class);
-        //    //put argument
-        //     return intent;
-        // }
-
 /** au clic FAB changement etat etoile favori ou non si neighbour est favori
  *changement etat variable favori du neighbour
  * */
@@ -100,14 +88,10 @@ public class NeighbourDetailActivity extends AppCompatActivity {
                 if (isFavori) {
                     isFavori = false;
                     mFabFavourite.setImageResource(R.drawable.ic_star_border_yellow_24dp);
-                    //            //Context context = getApplicationContext();
-                    //            //Toast.makeText(context, "yes", Toast.LENGTH_SHORT).show();
                     mApiService.removeFavorite(cloneNeighbour);
                 } else {
                     isFavori = true;
                     mFabFavourite.setImageResource(R.drawable.ic_star_yellow_24dp);
-                    //          // Context context = getApplicationContext();
-                    //          // Toast.makeText(context, "no", Toast.LENGTH_SHORT).show();
                     mApiService.addFavorite(cloneNeighbour);
                 }
             }
