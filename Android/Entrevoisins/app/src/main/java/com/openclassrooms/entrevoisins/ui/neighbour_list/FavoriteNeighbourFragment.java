@@ -22,9 +22,9 @@ import org.greenrobot.eventbus.Subscribe;
 import java.util.List;
 
 
-public class NeighbourFragment extends Fragment {
+public class FavoriteNeighbourFragment extends Fragment {
 
-    public static final String ALL_NEIGHBOURS_PAGE = "ALL_NEIGHBOURS_PAGE";
+    public static final CharSequence FAVORITE_NEIGHBOURS_PAGE = "FAVORITE_NEIGHBOURS_PAGE";
     private NeighbourApiService mApiService;
     private List<Neighbour> mNeighbours;
     private RecyclerView mRecyclerView;
@@ -32,10 +32,11 @@ public class NeighbourFragment extends Fragment {
 
     /**
      * Create and return a new instance
-     * @return @{@link NeighbourFragment}
+     * @return @{@link FavoriteNeighbourFragment}
+     * ldev
      */
-    public static NeighbourFragment newInstance() {
-        NeighbourFragment fragment = new NeighbourFragment();
+    public static FavoriteNeighbourFragment newInstance() {
+        FavoriteNeighbourFragment fragment = new FavoriteNeighbourFragment();
         return fragment;
     }
 
@@ -57,18 +58,14 @@ public class NeighbourFragment extends Fragment {
     }
 
     /**
-     * Init the List of neighbours
+     * Init the List of favorites neighbours
+     * ldev
      */
     private void initList() {
-        mNeighbours = mApiService.getNeighbours();
-        getView().setContentDescription(ALL_NEIGHBOURS_PAGE);
-        mRecyclerView.setAdapter(new MyNeighbourRecyclerViewAdapter(mNeighbours, false));
+        mNeighbours = mApiService.getFavoriteNeighbours();
+        getView().setContentDescription(FAVORITE_NEIGHBOURS_PAGE);
+        mRecyclerView.setAdapter(new MyNeighbourRecyclerViewAdapter(mNeighbours, true));
     }
-
-    //TODO
-    // changement init liste ds fragment dupliqué
-
-
 
     @Override
     public void onResume() {
@@ -95,6 +92,7 @@ public class NeighbourFragment extends Fragment {
     @Subscribe
     public void onDeleteNeighbour(DeleteNeighbourEvent event) {
         mApiService.deleteNeighbour(event.neighbour);
+        //mApiService.removeFavorite(event.neighbour);
         initList();
     }
 }

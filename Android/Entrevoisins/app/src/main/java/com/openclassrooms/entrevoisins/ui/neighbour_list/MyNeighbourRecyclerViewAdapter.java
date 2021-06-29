@@ -25,9 +25,12 @@ import butterknife.ButterKnife;
 public class MyNeighbourRecyclerViewAdapter extends RecyclerView.Adapter<MyNeighbourRecyclerViewAdapter.ViewHolder> {
 
     private final List<Neighbour> mNeighbours;
+    public static final String CLICKED_NEIGHBOUR = "CLICKED_NEIGHBOUR";
+    private final Boolean mFavorites;
 
-    public MyNeighbourRecyclerViewAdapter(List<Neighbour> items) {
+    public MyNeighbourRecyclerViewAdapter(List<Neighbour> items, Boolean favorites) {
         mNeighbours = items;
+        mFavorites = favorites;
     }
 
     @Override
@@ -46,43 +49,48 @@ public class MyNeighbourRecyclerViewAdapter extends RecyclerView.Adapter<MyNeigh
                 .apply(RequestOptions.circleCropTransform())
                 .into(holder.mNeighbourAvatar);
 
-
-
-                holder.mDeleteButton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
+        if (!mFavorites) {
+            holder.mDeleteButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
                         EventBus.getDefault().post(new DeleteNeighbourEvent(neighbour));
-                    }
-                });
+                }
+            });
+        } else {
+            holder.mDeleteButton.setVisibility(View.INVISIBLE);
+        }
+
+
+        /** lancement de l'actvivite detailneighbour a parir d'un item du recyclerview
+         * ldev
+         */
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
-                 @Override
-                 public void onClick(View v) {
-                     Intent NeighbourDetailActivityintent = new Intent(v.getContext(), NeighbourDetailActivity.class);
-                     NeighbourDetailActivityintent.putExtra("cardneighbour",neighbour);
-                     v.getContext().startActivity(NeighbourDetailActivityintent);
-                        }
-                     });
-
-
-            }
-
             @Override
-            public int getItemCount() {
-                return mNeighbours.size();
+            public void onClick(View v) {
+                Intent NeighbourDetailActivityintent = new Intent(v.getContext(), NeighbourDetailActivity.class);
+                NeighbourDetailActivityintent.putExtra(CLICKED_NEIGHBOUR, neighbour);
+                v.getContext().startActivity(NeighbourDetailActivityintent);
             }
+        });
+    }
 
-            public class ViewHolder extends RecyclerView.ViewHolder {
-                @BindView(R.id.item_list_avatar)
-                public ImageView mNeighbourAvatar;
-                @BindView(R.id.item_list_name)
-                public TextView mNeighbourName;
-                @BindView(R.id.item_list_delete_button)
-                public ImageButton mDeleteButton;
+    @Override
+    public int getItemCount() {
+        return mNeighbours.size();
+    }
 
-                public ViewHolder(View view) {
-                    super(view);
-                    ButterKnife.bind(this, view);
-                }
-            }
+    public class ViewHolder extends RecyclerView.ViewHolder {
+        @BindView(R.id.item_list_avatar)
+        public ImageView mNeighbourAvatar;
+        @BindView(R.id.item_list_name)
+        public TextView mNeighbourName;
+        @BindView(R.id.item_list_delete_button)
+        public ImageButton mDeleteButton;
+
+        public ViewHolder(View view) {
+            super(view);
+            ButterKnife.bind(this, view);
         }
+    }
+}

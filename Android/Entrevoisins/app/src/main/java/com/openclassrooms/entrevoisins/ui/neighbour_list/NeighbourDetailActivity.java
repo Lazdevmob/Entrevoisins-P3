@@ -1,20 +1,11 @@
 package com.openclassrooms.entrevoisins.ui.neighbour_list;
 
-import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
-import android.os.Build;
-import android.support.design.button.MaterialButton;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.TextInputLayout;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.openclassrooms.entrevoisins.R;
@@ -24,15 +15,12 @@ import com.openclassrooms.entrevoisins.service.NeighbourApiService;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
-import android.support.design.widget.AppBarLayout;
-import android.support.design.widget.AppBarLayout;
 
-import static android.widget.Toast.LENGTH_SHORT;
+import static com.openclassrooms.entrevoisins.ui.neighbour_list.MyNeighbourRecyclerViewAdapter.CLICKED_NEIGHBOUR;
 
 public class NeighbourDetailActivity extends AppCompatActivity {
 
-    private Neighbour mNeighbour;
+    private Neighbour cloneNeighbour;
     private NeighbourApiService mApiService;
 
     @BindView(R.id.seeAvatar)
@@ -53,10 +41,9 @@ public class NeighbourDetailActivity extends AppCompatActivity {
     TextView mShowAboutMe;
 
     @BindView(R.id.addFavouriteFBA)
-    FloatingActionButton mAddFavourite;
+    FloatingActionButton mFabFavourite;
 
     private boolean isFavori;
-
 
 
     @Override
@@ -70,34 +57,32 @@ public class NeighbourDetailActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         //getSupportActionBar().setDisplayShowHomeEnabled(true);
         //getSupportActionBar().setHomeButtonEnabled(true);
-
-
         //getSupportActionBar().setElevation(0);
 
-        mApiService = DI.getNeighbourApiService();
-        mNeighbour = (Neighbour) getIntent().getSerializableExtra("cardneighbour");
-        isFavori = mNeighbour.isIsfavorite();
 
-        if(isFavori) {
-            mAddFavourite.setImageResource(R.drawable.ic_star_white_24dp);
-            //mAddFavourite.setRippleColor(int);
+        mApiService = DI.getNeighbourApiService();
+        cloneNeighbour = (Neighbour) getIntent().getSerializableExtra(CLICKED_NEIGHBOUR);
+        isFavori = cloneNeighbour.isFavorite();
+
+/**afficher etoile favori ou non si neighbour est favori
+         * */
+        if (isFavori) {
+            mFabFavourite.setImageResource(R.drawable.ic_star_yellow_24dp);
             //Context context = getApplicationContext();
             //Toast.makeText(context, "yes", Toast.LENGTH_SHORT).show();
-        }
-        else{
-            mAddFavourite.setImageResource(R.drawable.ic_star_border_white_24dp);
+        } else {
+            mFabFavourite.setImageResource(R.drawable.ic_star_border_yellow_24dp);
             // Context context = getApplicationContext();
             // Toast.makeText(context, "no", Toast.LENGTH_SHORT).show();
-            // isFavori = false;
         }
 
-        mShowProfil.setText(mNeighbour.getName());
-        mShowName.setText(mNeighbour.getName());
-        mShowLocation.setText(mNeighbour.getAddress());
-        mShowPhone.setText(mNeighbour.getPhoneNumber());
-        mShowContact.setText("www.facebook.fr /" + mNeighbour.getName().toLowerCase());
-        mShowAboutMe.setText(mNeighbour.getAboutMe());
-        Glide.with(this).load(mNeighbour.getAvatarUrl()).into(mShowAvatar);
+        mShowProfil.setText(cloneNeighbour.getName());
+        mShowName.setText(cloneNeighbour.getName());
+        mShowLocation.setText(cloneNeighbour.getAddress());
+        mShowPhone.setText(cloneNeighbour.getPhoneNumber());
+        mShowContact.setText("www.facebook.fr /" + cloneNeighbour.getName().toLowerCase());
+        mShowAboutMe.setText(cloneNeighbour.getAboutMe());
+        Glide.with(this).load(cloneNeighbour.getAvatarUrl()).into(mShowAvatar);
 
 
         //public static Intent navigate(AppCompatActivity activity) {
@@ -106,28 +91,26 @@ public class NeighbourDetailActivity extends AppCompatActivity {
         //     return intent;
         // }
 
-
-        mAddFavourite.setOnClickListener(new View.OnClickListener() {
+/** au clic FAB changement etat etoile favori ou non si neighbour est favori
+ *changement etat variable favori du neighbour
+ * */
+        mFabFavourite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(isFavori) {
+                if (isFavori) {
                     isFavori = false;
-                    mAddFavourite.setImageResource(R.drawable.ic_star_border_white_24dp);
-                    //Context context = getApplicationContext();
-                    //Toast.makeText(context, "yes", Toast.LENGTH_SHORT).show();
-                    mApiService.removeFavorite(mNeighbour);
-                }
-                else{
+                    mFabFavourite.setImageResource(R.drawable.ic_star_border_yellow_24dp);
+                    //            //Context context = getApplicationContext();
+                    //            //Toast.makeText(context, "yes", Toast.LENGTH_SHORT).show();
+                    mApiService.removeFavorite(cloneNeighbour);
+                } else {
                     isFavori = true;
-                    mAddFavourite.setImageResource(R.drawable.ic_star_white_24dp);
-                    // Context context = getApplicationContext();
-                    // Toast.makeText(context, "no", Toast.LENGTH_SHORT).show();
-                    mApiService.addFavorite(mNeighbour);
+                    mFabFavourite.setImageResource(R.drawable.ic_star_yellow_24dp);
+                    //          // Context context = getApplicationContext();
+                    //          // Toast.makeText(context, "no", Toast.LENGTH_SHORT).show();
+                    mApiService.addFavorite(cloneNeighbour);
                 }
-
             }
-
         });
-
     }
 }
