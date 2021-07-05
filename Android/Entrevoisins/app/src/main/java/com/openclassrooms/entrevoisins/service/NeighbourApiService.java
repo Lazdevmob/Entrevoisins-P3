@@ -13,13 +13,13 @@ public interface NeighbourApiService {
     /**
      * Get all my Neighbours
      * @return {@link List}
-     * ldev
      */
     List<Neighbour> getNeighbours();
 
     /**
      * Get all my Favorite Neighbours
      * @return {@link List}
+     * * ldev
      */
     List<Neighbour> getFavoriteNeighbours();
 

@@ -38,6 +38,14 @@ public class DummyNeighbourApiService implements NeighbourApiService {
         neighbours.add(neighbour);
     }
 
+    /**
+     * ldev
+     */
+    @Override
+    public void addFavorite(Neighbour serializedNeighbour) {
+        Neighbour originalNeighbour = neighbours.get(neighbours.indexOf(serializedNeighbour));
+        originalNeighbour.setFavorite(true);
+    }
 
     /**
      * ldev
@@ -46,15 +54,6 @@ public class DummyNeighbourApiService implements NeighbourApiService {
     public void removeFavorite(Neighbour serializedNeighbour) {
         Neighbour originalNeighbour = neighbours.get(neighbours.indexOf(serializedNeighbour));
         originalNeighbour.setFavorite(false);
-    }
-
-    /**
-     * ldev
-     */
-    @Override
-    public void addFavorite(Neighbour serializedNeighbour) {
-        Neighbour originalNeighbour = neighbours.get(neighbours.indexOf(serializedNeighbour));
-        originalNeighbour.setFavorite(true);
     }
 
     /**
