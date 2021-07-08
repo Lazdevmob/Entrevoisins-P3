@@ -55,6 +55,8 @@ public class NeighbourDetailActivity extends AppCompatActivity {
         setSupportActionBar(findViewById(R.id.toolbarDet));
         findViewById(R.id.appbar2).bringToFront();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        //getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_baseline_language_24);
 
 
         mApiService = DI.getNeighbourApiService();

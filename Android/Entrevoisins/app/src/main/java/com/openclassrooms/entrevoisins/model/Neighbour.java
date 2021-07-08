@@ -50,6 +50,14 @@ public class Neighbour implements Serializable {
         this.favorite = false;
     }
 
+    @Override
+    public String toString() {
+        return "Neighbour{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
+    }
+
     public long getId() {
         return id;
     }

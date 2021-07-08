@@ -24,7 +24,7 @@ import java.util.List;
 
 public class FavoriteNeighbourFragment extends Fragment {
 
-    public static final CharSequence FAVORITE_NEIGHBOURS_PAGE = "FAVORITE_NEIGHBOURS_PAGE";
+
     private NeighbourApiService mApiService;
     private List<Neighbour> mNeighbours;
     private RecyclerView mRecyclerView;
@@ -49,7 +49,7 @@ public class FavoriteNeighbourFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_neighbour_list, container, false);
+        View view = inflater.inflate(R.layout.fragment_favorite_neighbour_list, container, false);
         Context context = view.getContext();
         mRecyclerView = (RecyclerView) view;
         mRecyclerView.setLayoutManager(new LinearLayoutManager(context));
@@ -63,7 +63,6 @@ public class FavoriteNeighbourFragment extends Fragment {
      */
     private void initList() {
         mNeighbours = mApiService.getFavoriteNeighbours();
-        getView().setContentDescription(FAVORITE_NEIGHBOURS_PAGE);
         mRecyclerView.setAdapter(new MyNeighbourRecyclerViewAdapter(mNeighbours, true));
     }
 

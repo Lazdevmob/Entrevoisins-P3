@@ -24,7 +24,6 @@ import java.util.List;
 
 public class NeighbourFragment extends Fragment {
 
-    public static final String ALL_NEIGHBOURS_PAGE = "ALL_NEIGHBOURS_PAGE";
     private NeighbourApiService mApiService;
     private List<Neighbour> mNeighbours;
     private RecyclerView mRecyclerView;
@@ -61,7 +60,6 @@ public class NeighbourFragment extends Fragment {
      */
     private void initList() {
         mNeighbours = mApiService.getNeighbours();
-        getView().setContentDescription(ALL_NEIGHBOURS_PAGE);
         mRecyclerView.setAdapter(new MyNeighbourRecyclerViewAdapter(mNeighbours, false));
     }
 

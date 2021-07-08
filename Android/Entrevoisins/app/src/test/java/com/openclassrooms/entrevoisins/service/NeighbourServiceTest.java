@@ -79,16 +79,7 @@ public class NeighbourServiceTest {
         service.addFavorite(FavoriteNeighbourToAdd);
         assertTrue(service.getFavoriteNeighbours().contains(FavoriteNeighbourToAdd));
     }
-    // /**
-    //  * ldev
-    //  */
-    // @Test
-    // public void addFavoriteNeighbourWithSuccess() {
-    //     Neighbour favoriteNeighbourToAdd = service.getNeighbours().get(0);
-    //     Neighbour serializedFavoriteNeighbourToAdd = (Neighbour) (Serializable) favoriteNeighbourToAdd;
-    //     service.addFavorite(serializedFavoriteNeighbourToAdd);
-    //     assertTrue(service.getFavoriteNeighbours().contains(favoriteNeighbourToAdd));
-    // }
+
 
     /*** ldev*/
     @Test
@@ -100,19 +91,5 @@ public class NeighbourServiceTest {
         service.removeFavorite(FavoriteNeighbourToDelete);
         assertFalse(service.getFavoriteNeighbours().contains(FavoriteNeighbourToDelete));
     }
-
-  // /**
-  //  * ldev
-  //  */
-  // @Test
-  // public void removeFavoriteNeighbourWithSuccess() {
-  //     Neighbour FavoriteNeighbourToDelete = service.getNeighbours().get(0);
-  //     Neighbour FavoriteNeighbourNotToDelete = service.getNeighbours().get(1);
-  //     service.addFavorite(FavoriteNeighbourToDelete);
-  //     service.addFavorite(FavoriteNeighbourNotToDelete);
-  //     service.removeFavorite(FavoriteNeighbourToDelete);
-  //     assertFalse(service.getFavoriteNeighbours().contains(FavoriteNeighbourToDelete));
-  // }
-
 
 }
