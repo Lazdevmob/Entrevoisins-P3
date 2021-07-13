@@ -32,10 +32,12 @@ public class DummyNeighbourApiService implements NeighbourApiService {
      * {@inheritDoc}
      *
      * @param neighbour
+     * @return
      */
     @Override
-    public void createNeighbour(Neighbour neighbour) {
+    public List<Neighbour> createNeighbour(Neighbour neighbour) {
         neighbours.add(neighbour);
+        return null;
     }
 
     /**

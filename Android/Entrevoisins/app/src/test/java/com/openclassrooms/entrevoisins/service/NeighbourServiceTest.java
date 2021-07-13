@@ -33,11 +33,28 @@ public class NeighbourServiceTest {
         service = DI.getNewInstanceApiService();
     }
 
+
+    /*** ldev*/
     @Test
     public void getNeighboursWithSuccess() {
         List<Neighbour> neighbours = service.getNeighbours();
         List<Neighbour> expectedNeighbours = DummyNeighbourGenerator.DUMMY_NEIGHBOURS;
         assertThat(neighbours, IsIterableContainingInAnyOrder.containsInAnyOrder(expectedNeighbours.toArray()));
+    }
+
+    /*** ldev*/
+    @Test
+    public void createNeighbourWithSuccess() {
+        //given: a new neighbour
+        Neighbour newNeighbour = new Neighbour(13, "Toto", "https://i.pravatar.cc/150?u=a042581f4e29026704d", "Saint-Pierre-du-Mont ; 5km",
+                "+33 6 00 00 00 00 ",  "Bonjour !Je souhaiterais faire de la marche nordique...");
+        //when: I add the newNeighbour to the neighbourList
+        service.createNeighbour(newNeighbour);
+        List<Neighbour> neighbours = service.getNeighbours();
+
+        //then: the neighbour list contains the new neighbour
+        System.out.println(neighbours.toString());
+        assertTrue(neighbours.contains(newNeighbour)); // WTF ????!!!!!
     }
 
 

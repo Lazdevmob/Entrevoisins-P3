@@ -20,8 +20,6 @@ import static com.openclassrooms.entrevoisins.ui.neighbour_list.MyNeighbourRecyc
 
 public class NeighbourDetailActivity extends AppCompatActivity {
 
-    private Neighbour cloneNeighbour;
-    private NeighbourApiService mApiService;
 
     @BindView(R.id.seeAvatar)
     ImageView mShowAvatar;
@@ -39,11 +37,12 @@ public class NeighbourDetailActivity extends AppCompatActivity {
     TextView mShowTitleAboutMe;
     @BindView(R.id.seeAboutMe)
     TextView mShowAboutMe;
-
-    @BindView(R.id.addFavouriteFBA)
+    @BindView(R.id.addFavouriteFAB)
     FloatingActionButton mFabFavourite;
 
-    private boolean isFavori;
+    private NeighbourApiService mApiService;
+    private Neighbour cloneNeighbour;
+    private boolean favorite;
 
 
     @Override
@@ -58,14 +57,14 @@ public class NeighbourDetailActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         //getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_baseline_language_24);
 
-
         mApiService = DI.getNeighbourApiService();
+
         cloneNeighbour = (Neighbour) getIntent().getSerializableExtra(CLICKED_NEIGHBOUR);
-        isFavori = cloneNeighbour.isFavorite();
+        favorite = cloneNeighbour.isFavorite();
 
 /**afficher etoile favori ou non si neighbour est favori
          * */
-        if (isFavori) {
+        if (favorite) {
             mFabFavourite.setImageResource(R.drawable.ic_star_yellow_24dp);
         }
         else {
@@ -87,12 +86,12 @@ public class NeighbourDetailActivity extends AppCompatActivity {
         mFabFavourite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (isFavori) {
-                    isFavori = false;
+                if (favorite) {
+                    favorite = false;
                     mFabFavourite.setImageResource(R.drawable.ic_star_border_yellow_24dp);
                     mApiService.removeFavorite(cloneNeighbour);
                 } else {
-                    isFavori = true;
+                    favorite = true;
                     mFabFavourite.setImageResource(R.drawable.ic_star_yellow_24dp);
                     mApiService.addFavorite(cloneNeighbour);
                 }

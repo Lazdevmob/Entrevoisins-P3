@@ -33,8 +33,9 @@ public interface NeighbourApiService {
     /**
      * Create a neighbour
      * @param neighbour
+     * @return
      */
-    void createNeighbour(Neighbour neighbour);
+    List<Neighbour> createNeighbour(Neighbour neighbour);
 
     /**
      * Remove a favorite neighbour
