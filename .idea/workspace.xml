@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="27a9a0f8-5106-4a93-93e3-f446f3fe12ab" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/Android/Entrevoisins/app/src/test/java/com/openclassrooms/entrevoisins/service/NeighbourServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/Android/Entrevoisins/app/src/test/java/com/openclassrooms/entrevoisins/service/NeighbourServiceTest.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1tLKUclI5m3tZm9uK3FDcdVsVDo" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Android" />
+    <property name="settings.editor.selected.configurable" value="AndroidSdkUpdater" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="27a9a0f8-5106-4a93-93e3-f446f3fe12ab" name="Default Changelist" comment="" />
+      <created>1622542946151</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1622542946151</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="2552" y="255" key="FileChooserDialogImpl" timestamp="1625221244351">
+      <screen x="1920" y="82" width="1920" height="1080" />
+    </state>
+    <state x="421" y="115" key="FileChooserDialogImpl/0.0.1280.720/1920.82.1920.1080@0.0.1280.720" timestamp="1622543214776" />
+    <state x="2552" y="255" key="FileChooserDialogImpl/0.0.1280.720/1920.82.1920.1080@1920.82.1920.1080" timestamp="1625221244351" />
+  </component>
+</project>
