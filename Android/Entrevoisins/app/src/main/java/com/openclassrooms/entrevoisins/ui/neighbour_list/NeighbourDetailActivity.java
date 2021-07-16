@@ -55,15 +55,14 @@ public class NeighbourDetailActivity extends AppCompatActivity {
         findViewById(R.id.appbar2).bringToFront();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
-        //getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_baseline_language_24);
 
         mApiService = DI.getNeighbourApiService();
 
         cloneNeighbour = (Neighbour) getIntent().getSerializableExtra(CLICKED_NEIGHBOUR);
         favorite = cloneNeighbour.isFavorite();
 
-/**afficher etoile favori ou non si neighbour est favori
-         * */
+        /**afficher etoile favori ou non si neighbour est favori
+         */
         if (favorite) {
             mFabFavourite.setImageResource(R.drawable.ic_star_yellow_24dp);
         }

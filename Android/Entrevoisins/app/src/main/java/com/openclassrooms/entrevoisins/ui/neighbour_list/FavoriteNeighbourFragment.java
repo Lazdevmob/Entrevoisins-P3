@@ -33,7 +33,6 @@ public class FavoriteNeighbourFragment extends Fragment {
     /**
      * Create and return a new instance
      * @return @{@link FavoriteNeighbourFragment}
-     * ldev
      */
     public static FavoriteNeighbourFragment newInstance() {
         FavoriteNeighbourFragment fragment = new FavoriteNeighbourFragment();
@@ -59,11 +58,10 @@ public class FavoriteNeighbourFragment extends Fragment {
 
     /**
      * Init the List of favorites neighbours
-     * ldev
      */
     private void initList() {
         mNeighbours = mApiService.getFavoriteNeighbours();
-        mRecyclerView.setAdapter(new MyNeighbourRecyclerViewAdapter(mNeighbours, true));
+        mRecyclerView.setAdapter(new MyNeighbourRecyclerViewAdapter(mNeighbours));
     }
 
     @Override

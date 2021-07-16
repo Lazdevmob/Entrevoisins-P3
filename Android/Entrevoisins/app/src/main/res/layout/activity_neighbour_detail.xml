@@ -81,26 +81,23 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="270dp"
         android:layout_marginEnd="32dp"
-        android:backgroundTint="#2B2B2B"
+
         android:clickable="true"
         android:contentDescription="TODO"
         android:src="@drawable/ic_star_border_yellow_24dp"
-        app:backgroundTint="@color/colorBlack"
+        app:backgroundTint="@color/colorWhite"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:elevation="16dp"/>
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="1dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/seeAvatar">
+
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:isScrollContainer="true"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@id/seeAvatar"
+>
 
 
             <android.support.v7.widget.CardView
@@ -235,7 +232,7 @@ Quelle est mon origine et le but qu'elle atteint ?"
             </android.support.v7.widget.CardView>
         </LinearLayout>
 
-    </ScrollView>
+
 
 
 </android.support.constraint.ConstraintLayout>

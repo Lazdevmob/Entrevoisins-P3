@@ -34,7 +34,7 @@ public class NeighbourServiceTest {
     }
 
 
-    /*** ldev*/
+    /** we ensure that the new neighbour list created is the same of the original neighbour list*/
     @Test
     public void getNeighboursWithSuccess() {
         List<Neighbour> neighbours = service.getNeighbours();
@@ -42,7 +42,7 @@ public class NeighbourServiceTest {
         assertThat(neighbours, IsIterableContainingInAnyOrder.containsInAnyOrder(expectedNeighbours.toArray()));
     }
 
-    /*** ldev*/
+    /** we ensure that a new neighbour created is in the new neighbour list*/
     @Test
     public void createNeighbourWithSuccess() {
         //given: a new neighbour
@@ -51,10 +51,7 @@ public class NeighbourServiceTest {
         //when: I add the newNeighbour to the neighbourList
         service.createNeighbour(newNeighbour);
         List<Neighbour> neighbours = service.getNeighbours();
-
-        //then: the neighbour list contains the new neighbour
-        System.out.println(neighbours.toString());
-        assertTrue(neighbours.contains(newNeighbour)); // WTF ????!!!!!
+        assertTrue(neighbours.contains(newNeighbour));
     }
 
 
@@ -66,7 +63,7 @@ public class NeighbourServiceTest {
         assertFalse(service.getNeighbours().contains(neighbourToDelete));
     }
 
-    /*** ldev*/
+    /*** When we set a neighbour favorite , this neighbour is in the new favorite Neighbour list*/
     @Test
     public void getFavoriteNeighboursWithSuccess() {
         //given: some neighbours are favorite
@@ -89,7 +86,7 @@ public class NeighbourServiceTest {
         assertEquals(2, actualFavoriteNeighbours.size());
     }
 
-    /*** ldev*/
+    /** we ensure that when we add favorite a neighbour,this neighbour is in the new favorite Neighbour list*/
     @Test
     public void addFavoriteNeighbourWithSuccess() {
         Neighbour FavoriteNeighbourToAdd = service.getNeighbours().get(0);
@@ -98,7 +95,7 @@ public class NeighbourServiceTest {
     }
 
 
-    /*** ldev*/
+    /** we ensure that a deleted neighbour is no longer in the new neighbour list*/
     @Test
     public void removeFavoriteNeighbourWithSuccess() {
         Neighbour FavoriteNeighbourToDelete = service.getNeighbours().get(0);

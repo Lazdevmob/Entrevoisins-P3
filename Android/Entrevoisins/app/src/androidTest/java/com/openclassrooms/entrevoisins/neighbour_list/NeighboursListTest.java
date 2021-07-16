@@ -74,13 +74,8 @@ public class NeighboursListTest {
         mActivity = mActivityRule.getActivity();
         assertThat(mActivity, notNullValue());
 
-        /**
-         * ldev
-         */
-        //mApiservice = DI.getNeighbourApiService();
         mApiservice = DI.getNewInstanceApiService();
     }
-
 
     /**
      * We ensure that our recyclerview is displaying at least on item
@@ -110,8 +105,6 @@ public class NeighboursListTest {
     /**
      * When we select an item, the detail item is shown and name ok
      */
-
-
     @Test
     public void myNeighboursList_selectAction_shouldDisplayDetailScreen() {
         //Given : list of neighbour items
@@ -119,13 +112,11 @@ public class NeighboursListTest {
         //when perform a click on item
         onView(withId(R.id.list_neighbours)).perform(RecyclerViewActions.actionOnItemAtPosition(3, click()));
         //Then assert Displayed Detail Activity and Neighbour name check
-        //Then assert Displayed Detail Activity and Neighbour name check
         onView(withId(R.id.activity_neighbour_detail)).check(matches(isDisplayed()));
         onView(withId(R.id.seeProfil)).check(matches(withText(mApiservice.getNeighbours().get(3).getName())));
     }
 
     /**
-     * ldev
      * When we set a neighbour favorite , the neighbour is shown in favorite Neighbour list
      */
     @Test
@@ -135,8 +126,6 @@ public class NeighboursListTest {
         onView(withId(R.id.list_neighbours)).perform(RecyclerViewActions.actionOnItemAtPosition(3, click()));
         onView(withId(R.id.addFavouriteFAB)).perform(click());
         pressBack();
-        //onView(withId(R.id.list_neighbours)).perform(click((ViewAction) withId(R.id.tabItem2)));
-        //onView(withId(R.id.tabItem2)).perform(click());
         onView(withContentDescription("Favorites")).perform(click());
         //then
         //onView(withId(R.id.list_neighbours)).perform(swipeLeft());

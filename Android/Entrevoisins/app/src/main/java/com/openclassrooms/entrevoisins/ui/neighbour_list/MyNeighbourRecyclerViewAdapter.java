@@ -26,11 +26,11 @@ public class MyNeighbourRecyclerViewAdapter extends RecyclerView.Adapter<MyNeigh
 
     private final List<Neighbour> mNeighbours;
     public static final String CLICKED_NEIGHBOUR = "CLICKED_NEIGHBOUR";
-    private final Boolean mFavorites;
 
-    public MyNeighbourRecyclerViewAdapter(List<Neighbour> items, Boolean favorites) {
+
+    public MyNeighbourRecyclerViewAdapter(List<Neighbour> items) {
         mNeighbours = items;
-        mFavorites = favorites;
+
     }
 
     @Override
@@ -49,16 +49,13 @@ public class MyNeighbourRecyclerViewAdapter extends RecyclerView.Adapter<MyNeigh
                 .apply(RequestOptions.circleCropTransform())
                 .into(holder.mNeighbourAvatar);
 
-        if (!mFavorites) {
             holder.mDeleteButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                         EventBus.getDefault().post(new DeleteNeighbourEvent(neighbour));
                 }
             });
-        } else {
-            holder.mDeleteButton.setVisibility(View.INVISIBLE);
-        }
+
 
 
         /** lancement de l'actvivite detailneighbour a parir d'un item du recyclerview
