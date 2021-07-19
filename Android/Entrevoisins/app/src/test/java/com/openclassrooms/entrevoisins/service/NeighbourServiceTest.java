@@ -26,7 +26,7 @@ import static org.junit.Assert.assertTrue;
 public class NeighbourServiceTest {
 
     private NeighbourApiService service;
-    //private Neighbour neighbour;
+    private int POSITION_ITEM = 0;
 
     @Before
     public void setup() {
@@ -58,7 +58,7 @@ public class NeighbourServiceTest {
 
     @Test
     public void deleteNeighbourWithSuccess() {
-        Neighbour neighbourToDelete = service.getNeighbours().get(0);
+        Neighbour neighbourToDelete = service.getNeighbours().get(POSITION_ITEM);
         service.deleteNeighbour(neighbourToDelete);
         assertFalse(service.getNeighbours().contains(neighbourToDelete));
     }
@@ -69,8 +69,8 @@ public class NeighbourServiceTest {
         //given: some neighbours are favorite
         service.getNeighbours().forEach(neighbour -> neighbour.setFavorite(false));
         //assertTrue(service.getFavoriteNeighbours().isEmpty());
-        Neighbour favoriteNeighbour = service.getNeighbours().get(0);
-        Neighbour favoriteNeighbour2 = service.getNeighbours().get(1);
+        Neighbour favoriteNeighbour = service.getNeighbours().get(POSITION_ITEM);
+        Neighbour favoriteNeighbour2 = service.getNeighbours().get(POSITION_ITEM+1);
         favoriteNeighbour.setFavorite(true);
         favoriteNeighbour2.setFavorite(true);
 
@@ -89,7 +89,7 @@ public class NeighbourServiceTest {
     /** we ensure that when we add favorite a neighbour,this neighbour is in the new favorite Neighbour list*/
     @Test
     public void addFavoriteNeighbourWithSuccess() {
-        Neighbour FavoriteNeighbourToAdd = service.getNeighbours().get(0);
+        Neighbour FavoriteNeighbourToAdd = service.getNeighbours().get(POSITION_ITEM);
         service.addFavorite(FavoriteNeighbourToAdd);
         assertTrue(service.getFavoriteNeighbours().contains(FavoriteNeighbourToAdd));
     }
@@ -98,8 +98,8 @@ public class NeighbourServiceTest {
     /** we ensure that a deleted neighbour is no longer in the new neighbour list*/
     @Test
     public void removeFavoriteNeighbourWithSuccess() {
-        Neighbour FavoriteNeighbourToDelete = service.getNeighbours().get(0);
-        Neighbour FavoriteNeighbourNotToDelete = service.getNeighbours().get(1);
+        Neighbour FavoriteNeighbourToDelete = service.getNeighbours().get(POSITION_ITEM);
+        Neighbour FavoriteNeighbourNotToDelete = service.getNeighbours().get(POSITION_ITEM+1);
         service.addFavorite(FavoriteNeighbourToDelete);
         service.addFavorite(FavoriteNeighbourNotToDelete);
         service.removeFavorite(FavoriteNeighbourToDelete);

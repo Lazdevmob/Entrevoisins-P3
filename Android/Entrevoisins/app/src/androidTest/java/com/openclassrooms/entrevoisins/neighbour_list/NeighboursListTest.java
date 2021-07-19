@@ -29,6 +29,7 @@ import org.junit.runner.RunWith;
 
 import java.util.List;
 
+import static android.provider.Settings.System.getString;
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.Espresso.pressBack;
 import static android.support.test.espresso.action.ViewActions.click;
@@ -57,11 +58,11 @@ public class NeighboursListTest {
 
     // This is fixed
     private static int ITEMS_COUNT = 12;
-
+    public static final int TAB_FAVORITE = R.string.tab_favorites_title;
     private ListNeighbourActivity mActivity;
-    /**
-     * ldev
-     */
+    private int POSITION_ITEM = 0;
+
+
     private NeighbourApiService mApiservice;
 
 
@@ -97,7 +98,7 @@ public class NeighboursListTest {
         onView(withId(R.id.list_neighbours)).check(withItemCount(ITEMS_COUNT));
         // When perform a click on a delete icon
         onView(withId(R.id.list_neighbours))
-                .perform(RecyclerViewActions.actionOnItemAtPosition(1, new DeleteViewAction()));
+                .perform(RecyclerViewActions.actionOnItemAtPosition(POSITION_ITEM, new DeleteViewAction()));
         // Then : the number of element is 11
         onView(withId(R.id.list_neighbours)).check(withItemCount(ITEMS_COUNT - 1));
     }
@@ -110,10 +111,10 @@ public class NeighboursListTest {
         //Given : list of neighbour items
         onView(withId(R.id.list_neighbours)).check(matches(isDisplayed()));
         //when perform a click on item
-        onView(withId(R.id.list_neighbours)).perform(RecyclerViewActions.actionOnItemAtPosition(3, click()));
+        onView(withId(R.id.list_neighbours)).perform(RecyclerViewActions.actionOnItemAtPosition(POSITION_ITEM+3, click()));
         //Then assert Displayed Detail Activity and Neighbour name check
         onView(withId(R.id.activity_neighbour_detail)).check(matches(isDisplayed()));
-        onView(withId(R.id.seeProfil)).check(matches(withText(mApiservice.getNeighbours().get(3).getName())));
+        onView(withId(R.id.seeProfil)).check(matches(withText(mApiservice.getNeighbours().get(POSITION_ITEM+3).getName())));
     }
 
     /**
@@ -123,19 +124,20 @@ public class NeighboursListTest {
     public void myFavoriteTab_selectAction_shouldDisplayOnlyFavoriteNeighbours() {
         //Given : list of neighbour items
         //when perform a click on item
-        onView(withId(R.id.list_neighbours)).perform(RecyclerViewActions.actionOnItemAtPosition(3, click()));
+        onView(withId(R.id.list_neighbours)).perform(RecyclerViewActions.actionOnItemAtPosition(POSITION_ITEM+3, click()));
         onView(withId(R.id.addFavouriteFAB)).perform(click());
         pressBack();
-        onView(withContentDescription("Favorites")).perform(click());
+        //onView(withContentDescription(TAB_FAVORITE)).perform(click());
+        onView(withContentDescription(TAB_FAVORITE)).perform(click());
         //then
         //onView(withId(R.id.list_neighbours)).perform(swipeLeft());
         onView(withId(R.id.list_Favorites_neighbours)).check(matches(isDisplayed()));
-        onView(withId(R.id.list_Favorites_neighbours)).check(withItemCount(ITEMS_COUNT - 11));
-        onView(withId(R.id.list_Favorites_neighbours)).perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
+        onView(withId(R.id.list_Favorites_neighbours)).check(withItemCount(1));
+        onView(withId(R.id.list_Favorites_neighbours)).perform(RecyclerViewActions.actionOnItemAtPosition(POSITION_ITEM, click()));
         onView(withId(R.id.activity_neighbour_detail)).check(matches(isDisplayed()));
         onView(withId(R.id.addFavouriteFAB)).perform(click());
         pressBack();
         onView(withId(R.id.list_Favorites_neighbours)).check(matches(isDisplayed()));
-        onView(withId(R.id.list_Favorites_neighbours)).check(withItemCount(ITEMS_COUNT - 12));
+        onView(withId(R.id.list_Favorites_neighbours)).check(withItemCount(0));
     }
 }
